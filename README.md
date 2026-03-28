@@ -25,8 +25,6 @@ To write a program to predict car prices using a linear regression model and tes
 Developed by: Sanjeev Kumar K
 RegisterNumber:25012334  
 
-df.head
-df = pd.read_csv('CarPrice_Assignment.csv')
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -36,6 +34,8 @@ from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import seaborn as sns
 import statsmodels.api as sm
+df=pd.read_csv('CarPrice_Assignment.csv')
+df.head()
 x=df[['enginesize','horsepower','citympg','highwaympg']]
 y=df['price']
 x_train,x_test,y_train,y_test = train_test_split(x, y, test_size=0.2,random_state=42)
@@ -72,7 +72,12 @@ plt.xlabel("Predicted Price ($)")
 plt.ylabel("Residuals ($)")
 plt.grid(True)
 plt.show()
-
+fig, (ax1, ax2)= plt.subplots(1,2, figsize=(12,5))
+sns.histplot(residuals, kde=True, ax=ax1)
+ax1.set_title("Residuals Distraction")
+sm.qqplot(residuals, line='45', fit=True, ax=ax2)
+ax2.set_title("Q-Q Plot")
+plt.tight_layout()
 */
 ```
 
